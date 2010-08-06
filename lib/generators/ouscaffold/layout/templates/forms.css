@@ -81,7 +81,7 @@ input:focus {
     font-size: 95%;
 }
 
-.flash-error {
+.flash-alert {
     margin: 0 0 1em 0;
     border: #ff4040 3px double;
     padding: 0.5em;

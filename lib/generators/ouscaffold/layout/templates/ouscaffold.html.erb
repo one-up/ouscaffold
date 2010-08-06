@@ -19,11 +19,11 @@
     <div class="main" id="main">
       <div id="body-container">
         <div id="body">
-<%%- if flash[:notice] -%>
-    <div class="flash-notice"><%%=h flash[:notice] %></div>
+<%%- if notice -%>
+    <div class="flash-notice"><%%=h notice %></div>
 <%%- end -%>
-<%%- if flash[:error] -%>
-    <div class="flash-error"><%%=h flash[:error] %></div>
+<%%- if alert -%>
+    <div class="flash-alert"><%%=h alert %></div>
 <%%- end -%>
 <%%= yield %>
         </div><!-- end of id="body" -->
