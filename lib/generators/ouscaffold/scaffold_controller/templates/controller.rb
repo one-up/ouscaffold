@@ -1,6 +1,6 @@
 class <%= controller_class_name %>Controller < ApplicationController
 
-  layout :ouscaffold
+  layout 'ouscaffold'
 
 <% unless options[:singleton] -%>
   # GET /<%= table_name %>
