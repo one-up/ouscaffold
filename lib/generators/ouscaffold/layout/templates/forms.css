@@ -48,6 +48,10 @@ input:focus {
     background-color: #e0ffe0;
 }
 
+form div.field, form div.actions {
+    margin-bottom: 1em;
+}
+
 
 /* ======================================== *
  *  Error (from Rails)
