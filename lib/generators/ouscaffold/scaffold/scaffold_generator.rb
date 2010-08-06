@@ -1,0 +1,97 @@
+require 'rails/generators'
+require 'rails/generators/rails/scaffold/scaffold_generator'
+
+module Ouscaffold
+  module Generators
+    class ScaffoldGenerator < Rails::Generators::ScaffoldGenerator
+      source_root File.join(File.dirname(__FILE__), 'templates')
+
+      class_option :confirm,  :type => :boolean, :default => true,  :desc => "Need input confirmation"
+      class_option :as_draft, :type => :boolean, :default => false, :desc => "Implement confirmation using draft column (not implemented)"
+
+      remove_hook_for :scaffold_controller
+      remove_hook_for :test_framework
+      hook_for :scaffold_controller, :required => true, :in => :ouscaffold
+
+      def append_route_function
+        prepend_file 'config/routes.rb', <<-END
+
+def confirm_rules
+  proc {
+    member     do put  :confirm_edit; end
+    collection do post :confirm_new ; end
+  }
+end
+
+        END
+      end
+
+      def add_resource_route
+        return if options[:actions].present?
+        return super unless options[:confirm]
+        if options[:singleton]
+          route "resource :#{controller_file_name}, &confirm_rules"
+        else
+          route "resources :#{controller_file_name.pluralize}, &confirm_rules"
+        end
+      end
+
+      # TODO: move to model generator
+      def append_validation
+        attributes.each do |attr|
+          inject_into_class File.join('app/models', class_path, "#{file_name}.rb"), "#{class_name}" do
+            case attr.type
+            when :integer
+              "  validates :#{attr.name}, :numericality => true\n"
+            when :string
+              "  #validates :#{attr.name}, :length > { :minimum => 1 }\n"
+            end
+          end
+        end
+      end
+
+      # TODO: move to model generator
+      # TODO: locales except jp
+      def append_model_i18n
+        model_locales = 'config/locales/ja/models'
+        empty_directory model_locales
+        template 'locale_ja.yml', File.join(model_locales, class_path, "#{file_name}.yml")
+      end
+
+      private
+      def translate(eng)
+        @translator ||= Translator.new('ja')
+        @translator.translate(eng)
+      end
+
+    end
+  end
+end
+
+#
+# NOTE: from amatsuda-i18n_generator
+#
+
+class Translator
+  def initialize(lang)
+    @lang, @cache = lang, {}
+  end
+
+  def translate(word)
+    return @cache[word] if @cache[word]
+    begin
+      w = CGI.escape ActiveSupport::Inflector.humanize(word)
+      json = OpenURI.open_uri("http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q=#{w}&langpair=en%7C#{@lang}").read
+      result = if RUBY_VERSION >= '1.9'
+                 ::JSON.parse json
+               else
+                 ActiveSupport::JSON.decode(json)
+               end
+      result['responseStatus'] == 200 ? (@cache[word] = result['responseData']['translatedText']) : word
+    rescue => e
+      puts %Q[failed to translate "#{word}" into "#{@lang}" language.]
+      word
+    end
+  end
+end
+

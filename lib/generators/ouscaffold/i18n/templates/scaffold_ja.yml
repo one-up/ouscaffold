@@ -1,0 +1,25 @@
+ja:
+  scaffold:
+    edit: "編集"
+    delete: "削除"
+    show: "詳細"
+    back: "戻る"
+    create: "登録"
+    update: "更新"
+    destroy: "削除"
+    confirm_delete: "本当に削除しますか?"
+    list: "%{model}一覧"
+    detail: "%{model}詳細"
+    editing: "%{model}編集"
+    new: "%{model}新規作成"
+    operations: "操作"
+    nodata: "%{model}のデータはありません。"
+    created_success: '%{model} は正常に作成されました'
+    updated_success: '%{model} は正常に更新されました'
+    confirm_new: '%{model} の新規作成 [確認画面]'
+    confirm_edit: '%{model} の編集 [確認画面]'
+
+  helpers:
+    submit:
+      create: "%{model} の作成"
+      update: "%{model} の編集"

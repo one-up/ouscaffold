@@ -1,0 +1,115 @@
+/**
+ * forms.css
+ * フォームのレイアウトを記載するスタイルファイル
+ */
+
+/* ======================================== *
+ *  Basis settings
+ * ======================================== */
+
+div.mainform {
+    margin: 1em 0;
+}
+
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+option {
+    width: 15em;
+}
+
+input[type=text] {
+    background-color: #ffffe0;
+}
+
+input[type=submit], input[type=reset] {
+    padding: 1px 10px;
+}
+
+fieldset.inline-form input[type=submit],
+fieldset.inline-form input[type=reset] {
+    padding: 1px;
+}
+
+.required:after {
+    display: inline;
+    font-size: 90%;
+    color: #ff8080;
+    content: ' [\5fc5\9808]';
+}
+
+.required { /* just for symmetry against 'required' */
+}
+
+input:focus {
+    background-color: #e0ffe0;
+}
+
+
+/* ======================================== *
+ *  Error (from Rails)
+ * ======================================== */
+
+.fieldWithErrors {
+    color: #ff4040;
+    font-weight: bolder;
+    display: inline;
+}
+
+.fieldWithErrors input {
+    background-color: #ffe0e0;
+}
+
+.errorExplanation {
+    border: #ff4040 2px dashed;
+    margin: 1em 0;
+    padding: 0.5em;
+    font-size: 95%;
+}
+
+.error ul {
+    padding-left: 2em;
+}
+
+.flash-notice {
+    margin: 0 0 1em 0;
+    border: #79f 3px double;
+    padding: 0.5em;
+    font-size: 95%;
+}
+
+.flash-error {
+    margin: 0 0 1em 0;
+    border: #ff4040 3px double;
+    padding: 0.5em;
+    font-size: 95%;
+}
+
+/* ======================================== *
+ *  etc
+ * ======================================== */
+
+.radio-list li {
+    display: inline;
+    padding: 0 1em 0 0.5em;
+    margin: 0;
+    border-right: gray 1px dashed;
+}
+ 
+.radio-list li.last-item {
+    border-right: none;
+}
+
+
+.form-list * {
+    display: inline;
+    padding: 0 0.5em;
+}
+
+label + label:before {
+    content: ' / ';
+}
+

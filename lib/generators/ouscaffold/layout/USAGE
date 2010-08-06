@@ -1,0 +1,17 @@
+Description:
+    generate layout files
+
+Example:
+    rails generate layout [--jslib=jquery]
+    
+    if using prototype.js, add --jslib=prototype
+
+    This will create:
+        public/stylesheets/ouscaffold/ouscaffold.css
+        public/stylesheets/ouscaffold/common.css
+        public/stylesheets/ouscaffold/forms.css
+        public/stylesheets/ouscaffold/pages.css
+        app/views/shared/_menu.html.erb
+        app/views/layouts/ouscaffold.html.erb
+        app/helpers/ouscaffold_helper.rb
+

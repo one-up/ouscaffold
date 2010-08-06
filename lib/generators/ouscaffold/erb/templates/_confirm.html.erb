@@ -1,0 +1,18 @@
+<%%= form_for(@<%= singular_name %>) do |f| %>
+  <table>
+    <tbody>
+<% for attribute in attributes -%>
+      <tr>
+        <th><%%= <%= class_name %>.human_attribute_name(:<%= attribute.name %>) %></th>
+        <td><%%= @<%= singular_name %>.<%= attribute.name %> %>
+          <%%= f.hidden_field :<%= attribute.name %> %>
+        </td>
+      </tr>
+<% end -%>
+    </tbody>
+  </table>
+  <div class="actions">
+    <%%= f.submit %>
+  </div>
+<%% end -%>
+

@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    models:
+      <%= singular_name %>: "<%= translate(singular_name) %>" #g
+
+    attributes:
+      <%= singular_name %>:
+<%- attributes.each do |attr| -%>
+        <%= attr.name %>: "<%= translate(attr.name) %>" #g
+<%- end -%>

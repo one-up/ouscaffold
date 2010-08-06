@@ -1,0 +1,15 @@
+Description:
+    Scaffold created by One-Up Inc.
+
+Example:
+    rails g ouscaffold:scaffold item name:string price:integer
+
+    This will create:
+        controller
+        model (with migration)
+        spec
+
+    Options:
+        --confirm[=yes]     generate confirmation actions (defualt)
+        --as-draft[=no]     confirmation using draft column (NOT IMPLEMENTED)
+

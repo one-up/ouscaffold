@@ -1,0 +1,11 @@
+<div class="section">
+  <h2><%%= t("editing", :scope => :scaffold, :model => <%= class_name %>.model_name.human) %></h2>
+
+  <%%= render 'form' %>
+
+  <p>
+    <%%= link_to t('show', :scope => :scaffold), @<%= singular_name %> %> |
+    <%%= link_to t('back', :scope => :scaffold), <%= plural_name %>_path %>
+  </p>
+</div>
+
