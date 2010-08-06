@@ -4,12 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
   <head>
     <title>タイトル</title>
- <%- if options[:jslib] == 'prototype' -%>
+    <%%= csrf_meta_tag %>
     <%%= javascript_include_tag :defaults %>
-<%- else -%>
-    <%%= javascript_include_tag 'jquery' %>
-<%- end -%>
-    <%%= javascript_include_tag 'rails' %>
     <%%= stylesheet_link_tag "ouscaffold/ouscaffold.css" %>
   </head>
   <body class="<%%= RAILS_ENV %>">
