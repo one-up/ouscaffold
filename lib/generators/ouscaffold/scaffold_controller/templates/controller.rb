@@ -83,7 +83,7 @@ class <%= controller_class_name %>Controller < ApplicationController
 
     respond_to do |format|
       if @<%= orm_instance.save %>
-        format.html { redirect_to(@<%= file_name %>, :notice => '<%= human_name %> was successfully created.') }
+        format.html { redirect_to(@<%= file_name %>, :notice => t('created_success', :scope => :scaffold, :model => <%= class_name %>.model_name.human)) }
         format.xml  { render :xml => @<%= file_name %>, :status => :created, :location => @<%= file_name %> }
       else
         format.html { render :action => "new" }
@@ -99,7 +99,7 @@ class <%= controller_class_name %>Controller < ApplicationController
 
     respond_to do |format|
       if @<%= orm_instance.update_attributes("params[:#{file_name}]") %>
-        format.html { redirect_to(@<%= file_name %>, :notice => '<%= human_name %> was successfully updated.') }
+        format.html { redirect_to(@<%= file_name %>, :notice => t('updated_success', :scope => :scaffold, :model => <%= class_name %>.model_name.human, :id => @<%= file_name %>.id)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -115,7 +115,7 @@ class <%= controller_class_name %>Controller < ApplicationController
     @<%= orm_instance.destroy %>
 
     respond_to do |format|
-      format.html { redirect_to(<%= table_name %>_url) }
+      format.html { redirect_to(<%= table_name %>_url, :notice => t('destroyed_success', :scope => :scaffold, :model => <%= class_name %>.model_name.human, :id => @<%= file_name %>.id)) }
       format.xml  { head :ok }
     end
   end

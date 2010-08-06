@@ -15,7 +15,8 @@ ja:
     operations: "操作"
     nodata: "%{model}のデータはありません。"
     created_success: '%{model} は正常に作成されました'
-    updated_success: '%{model} は正常に更新されました'
+    updated_success: '%{model}(ID=%{id}) は正常に更新されました'
+    destroyed_success: '%{model}(ID=%{id}) は削除されました'
     confirm_new: '%{model} の新規作成 [確認画面]'
     confirm_edit: '%{model} の編集 [確認画面]'
 
