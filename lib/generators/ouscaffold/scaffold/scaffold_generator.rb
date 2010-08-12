@@ -8,6 +8,7 @@ module Ouscaffold
 
       class_option :confirm,  :type => :boolean, :default => true,  :desc => "Need input confirmation"
       class_option :as_draft, :type => :boolean, :default => false, :desc => "Implement confirmation using draft column (not implemented)"
+      class_option :git_add, :type => :boolean, :default => false, :desc => "git-add(1) to generated files"
 
       remove_hook_for :scaffold_controller
       remove_hook_for :test_framework
@@ -56,6 +57,44 @@ end
         model_locales = 'config/locales/ja/models'
         empty_directory model_locales
         template 'locale_ja.yml', File.join(model_locales, class_path, "#{file_name}.yml")
+      end
+
+      def git_add
+        return unless options[:git_add]
+        files = [
+          "config/routes.rb",
+          "app/controllers/#{controller_file_name}_controller.rb",
+          "app/helpers/#{controller_file_name}_helper.rb",
+          "app/models/#{file_name}.rb",
+          "app/views/#{controller_file_name}/_confirm.html.erb",
+          "app/views/#{controller_file_name}/_form.html.erb",
+          "app/views/#{controller_file_name}/edit.html.erb",
+          "app/views/#{controller_file_name}/index.html.erb",
+          "app/views/#{controller_file_name}/new.html.erb",
+          "app/views/#{controller_file_name}/show.html.erb",
+          "config/locales/ja/models/#{file_name}.yml",
+          "spec/controllers/#{controller_file_name}_controller_spec.rb",
+          "spec/helpers/#{controller_file_name}_helper_spec.rb",
+          "spec/models/#{file_name}_spec.rb",
+          "spec/requests/#{controller_file_name}_spec.rb",
+          "spec/routing/#{controller_file_name}_routing_spec.rb",
+          "spec/views/#{controller_file_name}/edit.html.erb_spec.rb",
+          "spec/views/#{controller_file_name}/index.html.erb_spec.rb",
+          "spec/views/#{controller_file_name}/new.html.erb_spec.rb",
+          "spec/views/#{controller_file_name}/show.html.erb_spec.rb",
+          "db/migrate/*_create_#{controller_file_name}.rb"
+        ]
+        if options[:confirm]
+          files += [
+            "app/views/#{controller_file_name}/confirm_new.html.erb",
+            "app/views/#{controller_file_name}/confirm_edit.html.erb",
+            "spec/views/#{controller_file_name}/confirm_new.html.erb_spec.rb",
+            "spec/views/#{controller_file_name}/confirm_edit.html.erb_spec.rb",
+          ]
+        end
+        files.each do |f|
+          git :add => f unless Dir.glob(f).empty?
+        end
       end
 
       private
