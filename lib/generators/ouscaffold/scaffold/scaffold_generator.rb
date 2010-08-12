@@ -12,6 +12,7 @@ module Ouscaffold
 
       class_option :confirm,  :type => :boolean, :default => true,  :desc => "Need input confirmation"
       class_option :as_draft, :type => :boolean, :default => false, :desc => "Implement confirmation using draft column (not implemented)"
+      class_option :display_id, :type => :boolean, :default => false, :desc => "create ActiveModel::Base#id view"
       class_option :git_add, :type => :boolean, :default => false, :desc => "git-add(1) to generated files"
 
       remove_hook_for :scaffold_controller

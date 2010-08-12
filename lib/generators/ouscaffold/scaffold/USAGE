@@ -12,4 +12,5 @@ Example:
     Options:
         --confirm[=yes]     generate confirmation actions (defualt)
         --as-draft[=no]     confirmation using draft column (NOT IMPLEMENTED)
+        --display-id        generate views with model id
 

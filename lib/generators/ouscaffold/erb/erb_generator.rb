@@ -11,6 +11,8 @@ module Ouscaffold
       class_option :confirm,  :type => :boolean, :default => true,  :desc => "Need input confirmation"
       class_option :as_draft, :type => :boolean, :default => false, :desc => "Implement confirmation using draft column (not implemented)"
 
+      class_option :display_id, :type => :boolean, :default => false, :desc => "create ActiveModel::Base#id view"
+
       def available_views
         if options[:confirm]
           %w(index edit show new _form confirm_new confirm_edit _confirm)
