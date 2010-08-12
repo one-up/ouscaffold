@@ -17,7 +17,7 @@ describe "<%= table_name %>/confirm_new.html.<%= options[:template_engine] %>" d
     rendered.should have_selector("form", :action => <%= table_name %>_path, :method => "post") do |form|
 <% for attribute in output_attributes -%>
       rendered.should contain(<%= value_for(attribute) %>.to_s)
-      form.should have_selector("<%= attribute.input_type -%>#<%= file_name %>_<%= attribute.name %>", :type => "hidden", :name => "<%= file_name %>[<%= attribute.name %>]")
+      form.should have_selector("input#<%= file_name %>_<%= attribute.name %>", :type => "hidden", :name => "<%= file_name %>[<%= attribute.name %>]")
 <% end -%>
     end
   end

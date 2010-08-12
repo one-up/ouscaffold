@@ -39,12 +39,14 @@ end
 
       # TODO: move to model generator
       def append_validation
-        attributes.each do |attr|
-          inject_into_class File.join('app/models', class_path, "#{file_name}.rb"), "#{class_name}" do
-            case attr.type
-            when :integer
-              "  validates :#{attr.name}, :numericality => true\n"
-            when :string
+        attributes.reverse_each do |attr|
+          case attr.type
+          when :integer
+            inject_into_class File.join('app/models', class_path, "#{file_name}.rb"), "#{class_name}" do
+                "  validates :#{attr.name}, :numericality => true\n"
+            end
+          when :string, :text
+            inject_into_class File.join('app/models', class_path, "#{file_name}.rb"), "#{class_name}" do
               "  #validates :#{attr.name}, :length > { :minimum => 1 }\n"
             end
           end
