@@ -44,6 +44,19 @@ module Ouscaffold
         template 'routing_spec.rb',
           File.join('spec/routing', controller_class_path, "#{controller_file_name}_routing_spec.rb")
       end
+
+      protected
+      def value_for(attribute)
+        if attribute.type == :integer
+          @_value_for_cache_offset ||= rand(1000000) + 100000
+          @_value_for_cache ||= {}
+          @_value_for_cache[attribute.name] || \
+            @_value_for_cache[attribute.name] = @_value_for_cache.size + @_value_for_cache_offset
+        else
+          super
+        end
+      end
+
     end
   end
 end
