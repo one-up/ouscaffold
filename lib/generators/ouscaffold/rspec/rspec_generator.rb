@@ -1,3 +1,4 @@
+require 'generators/ouscaffold'
 require 'generators/rspec'
 require 'rails/generators/resource_helpers'
 require 'generators/rspec/scaffold/scaffold_generator'
@@ -6,6 +7,7 @@ module Ouscaffold
   module Generators
     class RspecGenerator < Rspec::Generators::ScaffoldGenerator
       include Rails::Generators::ResourceHelpers
+      include Ouscaffold::ExtendedAttributes
 
       undef_method :copy_controller_files, :copy_view_files, :copy_routing_files
 

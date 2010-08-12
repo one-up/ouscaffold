@@ -2,7 +2,7 @@ Description:
     Scaffold created by One-Up Inc.
 
 Example:
-    rails g ouscaffold:scaffold item name:string price:integer
+    rails g ouscaffold:scaffold item required:string:notnull name:string price:integer 
 
     This will create:
         controller

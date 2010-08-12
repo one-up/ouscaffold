@@ -1,9 +1,13 @@
 require 'rails/generators'
 require 'rails/generators/rails/scaffold/scaffold_generator'
 
+require 'generators/ouscaffold'
+
 module Ouscaffold
   module Generators
     class ScaffoldGenerator < Rails::Generators::ScaffoldGenerator
+      include Ouscaffold::ExtendedAttributes
+
       source_root File.join(File.dirname(__FILE__), 'templates')
 
       class_option :confirm,  :type => :boolean, :default => true,  :desc => "Need input confirmation"
@@ -43,11 +47,17 @@ end
           case attr.type
           when :integer
             inject_into_class File.join('app/models', class_path, "#{file_name}.rb"), "#{class_name}" do
+              if attr.notnull
                 "  validates :#{attr.name}, :numericality => true\n"
+              else
+                "  validates :#{attr.name}, :numericality => true, :allow_nil => true\n"
+              end
             end
           when :string, :text
-            inject_into_class File.join('app/models', class_path, "#{file_name}.rb"), "#{class_name}" do
-              "  #validates :#{attr.name}, :length > { :minimum => 1 }\n"
+            if attr.notnull
+              inject_into_class File.join('app/models', class_path, "#{file_name}.rb"), "#{class_name}" do
+                "  validates :#{attr.name}, :length => { :minimum => 1 }\n"
+              end
             end
           end
         end
@@ -108,7 +118,6 @@ end
     end
   end
 end
-
 #
 # NOTE: from amatsuda-i18n_generator
 #
