@@ -1,13 +1,14 @@
-require 'generators/ouscaffold'
 require 'generators/rspec'
 require 'rails/generators/resource_helpers'
 require 'generators/rspec/scaffold/scaffold_generator'
+require 'generators/ouscaffold'
 
 module Ouscaffold
   module Generators
     class RspecGenerator < Rspec::Generators::ScaffoldGenerator
       include Rails::Generators::ResourceHelpers
       include Ouscaffold::ExtendedAttributes
+      include Ouscaffold::SpecHelpers
 
       undef_method :copy_controller_files, :copy_view_files, :copy_routing_files
 
@@ -38,25 +39,13 @@ module Ouscaffold
         end
       end
 
-      def create_test_file
-        template 'model_spec.rb', File.join('spec/models', class_path, "#{file_name}_spec.rb")
-      end
+      #def create_test_file
+      #  template 'model_spec.rb', File.join('spec/models', class_path, "#{file_name}_spec.rb")
+      #end
 
       def copy_routing_files
         template 'routing_spec.rb',
           File.join('spec/routing', controller_class_path, "#{controller_file_name}_routing_spec.rb")
-      end
-
-      protected
-      def value_for(attribute)
-        if attribute.type == :integer
-          @_value_for_cache_offset ||= rand(1000000) + 100000
-          @_value_for_cache ||= {}
-          @_value_for_cache[attribute.name] || \
-            @_value_for_cache[attribute.name] = @_value_for_cache.size + @_value_for_cache_offset
-        else
-          super
-        end
       end
 
     end

@@ -15,8 +15,11 @@ module Ouscaffold
       class_option :display_id, :type => :boolean, :default => false, :desc => "create ActiveModel::Base#id view"
       class_option :git_add, :type => :boolean, :default => false, :desc => "git-add(1) to generated files"
 
+      remove_hook_for :orm
       remove_hook_for :scaffold_controller
       remove_hook_for :test_framework
+      remove_hook_for :stylesheets
+      hook_for :orm, :in => :ouscaffold
       hook_for :scaffold_controller, :required => true, :in => :ouscaffold
 
       def append_route_function
@@ -39,28 +42,6 @@ end
           route "resource :#{controller_file_name}, &confirm_rules"
         else
           route "resources :#{controller_file_name.pluralize}, &confirm_rules"
-        end
-      end
-
-      # TODO: move to model generator
-      def append_validation
-        attributes.reverse_each do |attr|
-          case attr.type
-          when :integer
-            inject_into_class File.join('app/models', class_path, "#{file_name}.rb"), "#{class_name}" do
-              if attr.notnull
-                "  validates :#{attr.name}, :numericality => true\n"
-              else
-                "  validates :#{attr.name}, :numericality => true, :allow_nil => true\n"
-              end
-            end
-          when :string, :text
-            if attr.notnull
-              inject_into_class File.join('app/models', class_path, "#{file_name}.rb"), "#{class_name}" do
-                "  validates :#{attr.name}, :length => { :minimum => 1 }\n"
-              end
-            end
-          end
         end
       end
 
