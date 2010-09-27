@@ -1,0 +1,12 @@
+Description:
+    generate ouscaffold required files
+
+Example:
+    rails generate ouscaffold:install
+    
+    This will create:
+        public/stylesheets/ouscaffold/*.css
+        app/views/shared/_menu.html.erb
+        app/views/layouts/ouscaffold.html.erb
+        app/helpers/ouscaffold_helper.rb
+
