@@ -12,7 +12,7 @@
 <% for attribute in attributes -%>
       <tr>
         <th><%%= <%= class_name %>.human_attribute_name(:<%= attribute.name %>) %></th>
-        <td><%%= @<%= singular_name %>.<%= attribute.name %> %></td>
+        <td><%%=<%= qualifier(attribute) %> @<%= singular_name %>.<%= attribute.name %> %></td>
       </tr>
 <% end -%>
     </tbody>

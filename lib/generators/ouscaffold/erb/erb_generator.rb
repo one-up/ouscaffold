@@ -20,6 +20,16 @@ module Ouscaffold
           %w(index edit show new _form)
         end
       end
+
+      private
+      def qualifier(attribute)
+        case attribute.type
+        when :timestamp, :date
+          "l"
+        else
+          ""
+        end
+      end
             
     end
   end
