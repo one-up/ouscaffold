@@ -3,12 +3,12 @@
 <% unless attributes.empty? -%>
 one:
 <% for attribute in attributes -%>
-  <%= attribute.name %>: <%= attribute.default %>
+  <%= attribute.name %>: <%= value_for(attribute) %>
 <% end -%>
 
 two:
 <% for attribute in attributes -%>
-  <%= attribute.name %>: <%= attribute.default %>
+  <%= attribute.name %>: <%= value_for(attribute) %>
 <% end -%>
 <% else -%>
 # one:
