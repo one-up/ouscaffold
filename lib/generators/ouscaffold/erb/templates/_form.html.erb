@@ -2,7 +2,7 @@
   <%% if @<%= singular_name %>.errors.any? -%>
     <div id="error_explanation">
       <h3><%%=t 'activerecord.errors.template.header',
-        :model => <%= class_name %>.model_name.human, :count => @<%= singular_name %>.errors.count %>
+        :model => <%= class_name %>.model_name.human, :count => @<%= singular_name %>.errors.count %></h3>
       <ul>
       <%% @<%= singular_name %>.errors.full_messages.each do |msg| -%>
         <li><%%= msg %></li>
