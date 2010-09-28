@@ -13,6 +13,8 @@ module Ouscaffold
 
       #hook_for :rspec_model, :in => :ouscaffold
       invoke "ouscaffold:rspec_model"
+      invoke "ouscaffold:i18n_model"
+      
     end
   end
 end
