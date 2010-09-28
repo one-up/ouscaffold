@@ -59,7 +59,7 @@ table {
     border-collapse: collapse;
     border: solid 1px gray;
     padding: 0;
-    margin: 1em 0;
+    margin: 0 0 1em 0;
     font-size: 90%;
     line-height: 100%;
 }
@@ -73,11 +73,15 @@ thead tr {
     border-bottom: 3px double gray;
 }
 
+th + td {
+    border-left: 3px double gray;
+}
+
 tr.odd {
 }
 
 tr.even {
-    background-color: #eee;
+    background-color: #f0f0f0;
 }
 
 td, th {
@@ -136,21 +140,14 @@ div#footer {
  *  Color
  * ======================================== */
 
-body.production {
+body.production div#header {
     background-color: #ffe0e0;
 }
 
-body.staging {
+body.staging div#header {
     background-color: #e0ffe0;
 }
 
-/*
-body.development {
-    background-color: #e0e0ff;
-}
-*/
-
-body,
 /* ======================================== *
  *  Header
  * ======================================== */
@@ -158,12 +155,30 @@ body,
 div#header h1 {
 }
 
+div#header .title {
+    float: left;
+}
+
+div#header .account {
+    text-align: right;
+}
+
+
 /* ======================================== *
  *  Body
  * ======================================== */
 
 div#body div, div#body h2, div#body h3 {
     clear: both;
+}
+
+h3 {
+    margin-top: 0.5em;
+    border-bottom: 1px dashed gray;
+}
+
+h4 {
+    margin-top: 0.5em;
 }
 
 /* ======================================== *

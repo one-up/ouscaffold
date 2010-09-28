@@ -11,13 +11,15 @@
     </div>
   <%% end -%>
 
-<% for attribute in attributes -%>
-  <div class="field">
-    <%%= f.label :<%= attribute.name %> %><br />
-    <%%= f.<%= attribute.field_type %> :<%= attribute.name %> %>
-  </div>
-<% end -%>
-  <div class="actions">
-    <%%= f.submit %>
-  </div>
+  <fieldset>
+    <ul>
+  <%- for attribute in attributes -%>
+      <li class="field">
+        <%%= f.label :<%= attribute.name %> %>
+        <%%= f.<%= attribute.field_type %> :<%= attribute.name %> %>
+      </li>
+  <%- end -%>
+    </ul>
+    <p><%%= f.submit %></p>
+  </fieldset>
 <%% end -%>

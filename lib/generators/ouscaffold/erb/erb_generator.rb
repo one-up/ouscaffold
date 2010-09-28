@@ -22,10 +22,22 @@ module Ouscaffold
       end
 
       private
-      def qualifier(attribute, content)
+      def qualifier(attribute, content, options = {})
         case attribute.type
         when :timestamp, :date
           "l(#{content}) rescue nil"
+        when :text
+          if options[:truncate]
+            "truncate(#{content}, :length => #{options[:truncate]})"
+          else
+            "content_tag(:pre, #{content})"
+          end
+        when :string
+          if options[:truncate]
+            "truncate(#{content}, :length => #{options[:truncate]})"
+          else
+            content
+          end
         else
           content
         end

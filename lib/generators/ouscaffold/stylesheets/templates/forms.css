@@ -12,9 +12,9 @@ div.mainform {
 }
 
 fieldset {
-    border: none;
-    margin: 0;
-    padding: 0;
+    border: 1px gray solid;
+    margin: 0 0 1em 0;
+    padding: 5px;
 }
 
 option {
@@ -52,29 +52,78 @@ form div.field, form div.actions {
     margin-bottom: 1em;
 }
 
+form div.field, form div.actions {
+    margin-bottom: 1em;
+}
+
+fieldset ul {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+fieldset ul li {
+    padding: 3px 0;
+    border-bottom: 1px dashed gray;
+}
+
+fieldset ul li label {
+    position: absolute;
+    width: 140px;
+}
+
+fieldset ul li input,
+fieldset ul li textarea,
+fieldset ul li select {
+    margin: 3px 0 3px 150px;
+}
+
+fieldset ul li select + select {
+    margin-left: 0;
+}
+
+option {
+    width: 4em;
+}
+
+fieldset input[type="submit"] {
+    margin-left: 150px;
+}
+
+fieldset ul.submit li {
+    margin-top: 3px;
+    border-top: 1px solid gray;
+}
+
 
 /* ======================================== *
  *  Error (from Rails)
  * ======================================== */
 
-.fieldWithErrors {
+.field_with_errors {
     color: #ff4040;
     font-weight: bolder;
     display: inline;
 }
 
-.fieldWithErrors input {
+.field_with_errors input,
+.field_with_errors textarea {
     background-color: #ffe0e0;
 }
 
-.errorExplanation {
+#error_explanation {
     border: #ff4040 2px dashed;
     margin: 1em 0;
     padding: 0.5em;
     font-size: 95%;
 }
 
-.error ul {
+#error_explanation h3 {
+    border-bottom: gray 1px solid;
+}
+
+#error_explanation ul {
     padding-left: 2em;
 }
 
