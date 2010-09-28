@@ -1,10 +1,10 @@
-<%%= form_for(@<%= singular_name %><%= ", :url => @confirm_path " if options[:confirm] %>) do |f| %>
-  <%% if @<%= singular_name %>.errors.any? -%>
+<%%= form_for(@<%= singular_table_name %><%= ", :url => @confirm_path " if options[:confirm] %>) do |f| %>
+  <%% if @<%= singular_table_name %>.errors.any? -%>
     <div id="error_explanation">
       <h3><%%=t 'activerecord.errors.template.header',
-        :model => <%= class_name %>.model_name.human, :count => @<%= singular_name %>.errors.count %></h3>
+        :model => <%= class_name %>.model_name.human, :count => @<%= singular_table_name %>.errors.count %></h3>
       <ul>
-      <%% @<%= singular_name %>.errors.full_messages.each do |msg| -%>
+      <%% @<%= singular_table_name %>.errors.full_messages.each do |msg| -%>
         <li><%%= msg %></li>
       <%% end -%>
       </ul>

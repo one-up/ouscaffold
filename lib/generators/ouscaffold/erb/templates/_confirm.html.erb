@@ -1,11 +1,11 @@
 <p><%%= t 'scaffold.confirm_text' %></p>
-<%%= form_for(@<%= singular_name %>) do |f| %>
+<%%= form_for(@<%= singular_table_name %>) do |f| %>
   <table>
     <tbody>
 <% for attribute in attributes -%>
       <tr>
         <th><%%= <%= class_name %>.human_attribute_name(:<%= attribute.name %>) %></th>
-        <td><%%=<%= qualifier(attribute) %> @<%= singular_name %>.<%= attribute.name %> %>
+        <td><%%=<%= qualifier(attribute, "@#{ singular_table_name }.#{ attribute.name }") %> %>
           <%%= f.hidden_field :<%= attribute.name %> %>
         </td>
       </tr>

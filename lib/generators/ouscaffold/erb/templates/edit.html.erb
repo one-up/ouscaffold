@@ -6,8 +6,8 @@
   <hr />
 
   <p>
-    <%%= link_to t('show', :scope => :scaffold), @<%= singular_name %> %> |
-    <%%= link_to t('back', :scope => :scaffold), <%= plural_name %>_path %>
+    <%%= link_to t('show', :scope => :scaffold), @<%= singular_table_name %> %> |
+    <%%= link_to t('back', :scope => :scaffold), <%= index_helper %>_path %>
   </p>
 </div>
 

@@ -24,7 +24,7 @@ module Ouscaffold
 
       def copy_controller_files
         template 'controller_spec.rb',
-                 File.join('spec/controllers', controller_class_path, "#{controller_file_name}_controller_spec.rb")
+                 File.join('spec/controllers', controller_class_path, "#{plural_file_name}_controller_spec.rb")
       end
 
       def copy_view_files
@@ -39,13 +39,28 @@ module Ouscaffold
         end
       end
 
-      #def create_test_file
-      #  template 'model_spec.rb', File.join('spec/models', class_path, "#{file_name}_spec.rb")
-      #end
-
       def copy_routing_files
         template 'routing_spec.rb',
-          File.join('spec/routing', controller_class_path, "#{controller_file_name}_routing_spec.rb")
+          File.join('spec/routing', controller_class_path, "#{plural_file_name}_routing_spec.rb")
+      end
+
+      private
+      def mock_file_name(hash=nil)
+        if hash
+          method, and_return = hash.to_a.first
+          method = orm_instance.send(method).split('.').last.gsub(/\(.*?\)/, '')
+          "mock_#{singular_table_name}(:#{method} => #{and_return})"
+        else
+          "mock_#{singular_table_name}"
+        end
+      end
+
+      def controller_path
+        if controller_class_path.blank?
+          plural_file_name
+        else
+          [controller_class_path, plural_file_name].join('/')
+        end
       end
 
     end

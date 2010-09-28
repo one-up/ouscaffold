@@ -16,6 +16,12 @@ module Ouscaffold
       def create_test_file
         template 'model_spec.rb', File.join('spec/models', class_path, "#{file_name}_spec.rb")
       end
+
+      def create_fixture_file
+        if options[:fixture] && options[:fixture_replacement].nil?
+          template 'fixtures.yml', File.join('spec/fixtures', class_path, "#{table_name}.yml")
+        end
+      end
     end
   end
 end

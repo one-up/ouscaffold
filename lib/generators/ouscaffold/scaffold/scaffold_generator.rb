@@ -39,9 +39,15 @@ end
         return if options[:actions].present?
         return super unless options[:confirm]
         if options[:singleton]
-          route "resource :#{controller_file_name}, &confirm_rules"
+          route_config =  class_path.collect{|namespace| "namespace :#{namespace} do " }.join(" ")
+          route_config << "resource :#{controller_file_name}, &confirm_rules"
+          route_config << " end" * class_path.size
+          route route_config
         else
-          route "resources :#{controller_file_name.pluralize}, &confirm_rules"
+          route_config =  class_path.collect{|namespace| "namespace :#{namespace} do " }.join(" ")
+          route_config << "resources :#{controller_file_name.pluralize}, &confirm_rules"
+          route_config << " end" * class_path.size
+          route route_config
         end
       end
 

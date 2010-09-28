@@ -22,12 +22,12 @@ module Ouscaffold
       end
 
       private
-      def qualifier(attribute)
+      def qualifier(attribute, content)
         case attribute.type
         when :timestamp, :date
-          "l"
+          "l(#{content}) rescue nil"
         else
-          ""
+          content
         end
       end
             

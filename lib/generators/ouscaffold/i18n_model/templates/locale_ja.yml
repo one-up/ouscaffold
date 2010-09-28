@@ -1,10 +1,10 @@
 ja:
   activerecord:
     models:
-      <%= singular_name %>: "<%= translate(singular_name) %>" #g
+      "<%= file_path %>": "<%= translate(singular_name) %>" #g
 
     attributes:
-      <%= singular_name %>:
+      "<%= file_path %>":
 <%- attributes.each do |attr| -%>
         <%= attr.name %>: "<%= translate(attr.name) %>" #g
 <%- end -%>
