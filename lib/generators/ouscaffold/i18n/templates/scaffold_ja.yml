@@ -19,6 +19,7 @@ ja:
     destroyed_success: '%{model}(ID=%{id}) は削除されました'
     confirm_new: '%{model} の新規作成 [確認画面]'
     confirm_edit: '%{model} の編集 [確認画面]'
+    confirm_text: 'この内容でよろしいですか？よろしければ編集ボタンを押してください'
 
   helpers:
     submit:
