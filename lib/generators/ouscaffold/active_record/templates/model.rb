@@ -4,8 +4,8 @@ class <%= class_name %> < <%= parent_class_name.classify %>
 <% end -%>
 
 <% attributes.each do |attr| -%>
-<%   case attr.type -%>
-<%   when :integer -%>
+<%   case attr.type
+     when :integer -%>
   validates :<%= attr.name %>, :numericality => true<%= ", :allow_nil => true" unless attr.notnull %>
 <%   when :string, :text -%>
 <%     if attr.notnull -%>
