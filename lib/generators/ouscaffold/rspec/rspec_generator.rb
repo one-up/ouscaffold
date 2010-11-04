@@ -10,7 +10,7 @@ module Ouscaffold
       include Ouscaffold::ExtendedAttributes
       include Ouscaffold::SpecHelpers
 
-      undef_method :copy_controller_files, :copy_view_files, :copy_routing_files
+      undef_method :generate_controller_spec, :generate_view_specs, :generate_routing_spec
 
       #source_root File.join(File.dirname(__FILE__), 'templates')  # workaround for Rspec::Generators::ScaffoldGenerator
       def self.source_root
@@ -22,12 +22,12 @@ module Ouscaffold
       class_option :confirm,  :type => :boolean, :default => true,  :desc => "Need input confirmation"
       class_option :as_draft, :type => :boolean, :default => false, :desc => "Implement confirmation using draft column (not implemented)"
 
-      def copy_controller_files
+      def generate_controller_spec
         template 'controller_spec.rb',
                  File.join('spec/controllers', controller_class_path, "#{plural_file_name}_controller_spec.rb")
       end
 
-      def copy_view_files
+      def generate_view_specs
         copy_view :edit
         copy_view :index unless options[:singleton]
         copy_view :new
@@ -39,7 +39,7 @@ module Ouscaffold
         end
       end
 
-      def copy_routing_files
+      def generate_routing_spec
         template 'routing_spec.rb',
           File.join('spec/routing', controller_class_path, "#{plural_file_name}_routing_spec.rb")
       end
