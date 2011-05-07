@@ -8,11 +8,13 @@ module Ouscaffold
       include Ouscaffold::ExtendedAttributes
       source_root File.join(File.dirname(__FILE__), 'templates')
 
+      class_option :model,    :type => :string,  :desc => "Specify model name"
+
       # TODO: locales except jp
       def append_model_i18n
         model_locales = 'config/locales/ja/models'
         empty_directory model_locales
-        template 'locale_ja.yml', File.join(model_locales, class_path, "#{file_name}.yml")
+        template 'locale_ja.yml', File.join(model_locales, specified.class_path, "#{specified.file_name}.yml")
       end
 
       private

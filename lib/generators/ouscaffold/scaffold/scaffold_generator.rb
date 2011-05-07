@@ -10,6 +10,7 @@ module Ouscaffold
 
       source_root File.join(File.dirname(__FILE__), 'templates')
 
+      class_option :model,    :type => :string,  :desc => "Specify model name"
       class_option :confirm,  :type => :boolean, :default => true,  :desc => "Need input confirmation"
       class_option :as_draft, :type => :boolean, :default => false, :desc => "Implement confirmation using draft column (not implemented)"
       class_option :display_id, :type => :boolean, :default => false, :desc => "create ActiveModel::Base#id view"

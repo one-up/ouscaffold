@@ -10,6 +10,8 @@ module Ouscaffold
       include Ouscaffold::ExtendedAttributes
       include Ouscaffold::SpecHelpers
 
+      class_option :model,    :type => :string,  :desc => "Specify model name"
+
       undef_method :generate_controller_spec, :generate_view_specs, :generate_routing_spec
 
       #source_root File.join(File.dirname(__FILE__), 'templates')  # workaround for Rspec::Generators::ScaffoldGenerator
@@ -49,9 +51,9 @@ module Ouscaffold
         if hash
           method, and_return = hash.to_a.first
           method = orm_instance.send(method).split('.').last.gsub(/\(.*?\)/, '')
-          "mock_#{singular_table_name}(:#{method} => #{and_return})"
+          "mock_#{specified.singular_table_name}(:#{method} => #{and_return})"
         else
-          "mock_#{singular_table_name}"
+          "mock_#{specified.singular_table_name}"
         end
       end
 

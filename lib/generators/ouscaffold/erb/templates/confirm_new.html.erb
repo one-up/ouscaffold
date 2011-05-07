@@ -1,12 +1,12 @@
 <div class="section">
-  <h2><%%= t("confirm_new", :scope => :scaffold, :model => <%= class_name %>.model_name.human) %></h2>
+  <h2><%%= t("confirm_new", :scope => :scaffold, :model => <%= specified.class_name %>.model_name.human) %></h2>
 
   <%%= render 'confirm' %>
 
   <hr />
 
   <p>
-    <%%= link_to t('list', :scope => :scaffold, :model => <%= class_name %>.model_name.human), <%= plural_table_name %>_path %>
+    <%%= link_to t('list', :scope => :scaffold, :model => <%= specified.class_name %>.model_name.human), <%= plural_table_name %>_path %>
   </p>
 </div>
 

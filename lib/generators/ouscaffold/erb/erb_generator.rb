@@ -8,6 +8,7 @@ module Ouscaffold
 
       argument :attributes, :type => :array, :default => [], :banner => "field:type[:option] field:type[:option]"
 
+      class_option :model,    :type => :string,  :desc => "Specify model name"
       class_option :confirm,  :type => :boolean, :default => true,  :desc => "Need input confirmation"
       class_option :as_draft, :type => :boolean, :default => false, :desc => "Implement confirmation using draft column (not implemented)"
 

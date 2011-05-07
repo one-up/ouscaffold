@@ -1,18 +1,18 @@
 <div class="section">
-  <h2><%%= t("detail", :scope => :scaffold, :model => <%= class_name %>.model_name.human) %></h2>
+  <h2><%%= t("detail", :scope => :scaffold, :model => <%= specified.class_name %>.model_name.human) %></h2>
 
   <table>
     <tbody>
 <%- if options[:display_id] -%>
       <tr>
         <th>ID</th>
-        <td><%%= @<%= singular_table_name %>.id %></td>
+        <td><%%= @<%= specified.singular_table_name %>.id %></td>
       </tr>
 <% end -%>
 <% for attribute in attributes -%>
       <tr>
-        <th><%%= <%= class_name %>.human_attribute_name(:<%= attribute.name %>) %></th>
-        <td><%%=<%= qualifier(attribute, "@#{ singular_table_name }.#{ attribute.name }") %> %></td>
+        <th><%%= <%= specified.class_name %>.human_attribute_name(:<%= attribute.name %>) %></th>
+        <td><%%=<%= qualifier(attribute, "@#{ specified.singular_table_name }.#{ attribute.name }") %> %></td>
       </tr>
 <% end -%>
     </tbody>
@@ -21,7 +21,7 @@
   <hr />
 
   <p>
-    <%%= link_to t('edit', :scope => :scaffold, :model => <%= class_name %>.model_name.human), edit_<%= singular_table_name %>_path(@<%= singular_table_name %>) %> |
-    <%%= link_to t('list', :scope => :scaffold, :model => <%= class_name %>.model_name.human), <%= index_helper %>_path %>
+    <%%= link_to t('edit', :scope => :scaffold, :model => <%= specified.class_name %>.model_name.human), edit_<%= singular_table_name %>_path(@<%= specified.singular_table_name %>) %> |
+    <%%= link_to t('list', :scope => :scaffold, :model => <%= specified.class_name %>.model_name.human), <%= index_helper %>_path %>
   </p>
 </div>
