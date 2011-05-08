@@ -1,0 +1,9 @@
+Description:
+    copy ouscaffold template files
+
+Example:
+    rails generate ouscaffold:install_scaffold_templates
+    
+    This will create:
+        lib/templates/ouscaffold/erb/*.html.erb
+
